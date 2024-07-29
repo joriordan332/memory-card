@@ -56,10 +56,13 @@ const Component = () => {
 
     setClickedImages(current => [...current, image]);
     
-    if (score >= 12) {
+    if (score > 10) {
       alert('You win')
       setScore(0);
       setClickedImages([]);
+      if(score > highScore) {
+        setHighScore(12)
+      }
     }
 
     setImages(shuffleArray(Images));
