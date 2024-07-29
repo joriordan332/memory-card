@@ -30,7 +30,6 @@ const Images = [
 ];
 
 const shuffleArray = (input) => {
-  // prevent sorting the original Array in place
   return input.slice().sort(() => Math.random() - 0.5);
 };
 
@@ -46,26 +45,34 @@ const Component = () => {
       setImages(shuffleArray(Images));
       setClickedImages([]);
       setScore(0);
-      return;
+      if(score > highScore) {
+        setHighScore(score)
+      }
+      
+    } else {
+      setScore(prevScore => prevScore + 1)
     }
 
-    setScore(score + 1);
 
-    // update clicked images
     setClickedImages(current => [...current, image]);
     
     if (score >= 12) {
       alert('You win')
       setScore(0);
-      // reset clicked images
       setClickedImages([]);
     }
 
     setImages(shuffleArray(Images));
     console.log(score);
   };
+  
 
   return (
+    <div>
+    <div className="scores">
+      <p className="currentScore">Score: {score}</p>
+      <p className="highScore">High Score: {highScore}</p>
+    </div>
     <div className="card">
       {images.map((img) => (
         <img
@@ -75,6 +82,7 @@ const Component = () => {
           onClick={() => incrementScore(img)}
         />
       ))}
+    </div>
     </div>
   );
 };
