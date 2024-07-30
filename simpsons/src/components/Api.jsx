@@ -76,17 +76,26 @@ const Component = () => {
       <p className="currentScore">Score: {score}</p>
       <p className="highScore">High Score: {highScore}</p>
     </div>
-    <div className="card">
+    
+   <div className="card">
+    
       {images.map((img) => (
-        <img
-          key={img}
-          src={img}
-          alt={img}
-          onClick={() => incrementScore(img)}
-        />
+        <div className="characterContainer">
+          <div className="imageContainer">
+            <img
+              className='character'
+              key={img}
+              src={img}
+              alt={img}
+              onClick={() => incrementScore(img)}
+            />
+          </div>
+        </div>
       ))}
+    
     </div>
     </div>
+  
   );
 };
 
